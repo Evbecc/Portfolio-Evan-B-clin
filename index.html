@@ -18,6 +18,15 @@
       --shadow-hover: 0 8px 30px rgba(99, 102, 241, 0.15);
     }
     
+    body.dark-mode {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --text-light: #cbd5e1;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+    
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
@@ -26,6 +35,7 @@
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      transition: background 0.3s ease, color 0.3s ease;
     }
     
     /* Header */
@@ -38,6 +48,11 @@
       border-bottom: 1px solid #e2e8f0;
     }
     
+    body.dark-mode .site-header {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid #334155;
+    }
+    
     .nav {
       max-width: 1200px;
       margin: 0 auto;
@@ -46,6 +61,59 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+    }
+    
+    /* Dark Mode Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 100px;
+      right: 2rem;
+      z-index: 999;
+      background: var(--card);
+      border: 2px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 0.5rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    body.dark-mode .theme-toggle {
+      border-color: #334155;
+    }
+    
+    .theme-toggle:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .theme-icon {
+      width: 28px;
+      height: 28px;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .theme-toggle .sun-icon {
+      display: block;
+    }
+    
+    .theme-toggle .moon-icon {
+      display: none;
+    }
+    
+    body.dark-mode .theme-toggle .sun-icon {
+      display: none;
+    }
+    
+    body.dark-mode .theme-toggle .moon-icon {
+      display: block;
     }
     
     .brand {
@@ -92,6 +160,19 @@
     .nav-links a:hover {
       color: var(--primary);
       background: rgba(99, 102, 241, 0.08);
+    }
+    
+    body.dark-mode .nav-links a {
+      color: #cbd5e1;
+    }
+    
+    body.dark-mode .nav-links a:hover {
+      color: #a5b4fc;
+      background: rgba(99, 102, 241, 0.2);
+    }
+    
+    body.dark-mode .brand strong {
+      color: #f1f5f9;
     }
     
     /* Hero */
@@ -390,10 +471,26 @@
       .nav-links a { padding: 0.5rem 0.75rem; font-size: 0.85rem; }
       .container { padding: 0 1rem; }
       .parcours-section { padding: 1.5rem; }
+      .theme-toggle {
+        top: 80px;
+        right: 1rem;
+        padding: 0.4rem;
+      }
+      .theme-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+    <div class="theme-icon sun-icon">☀️</div>
+    <div class="theme-icon moon-icon">🌙</div>
+  </button>
 
   <header class="site-header">
     <nav class="nav">
@@ -528,13 +625,15 @@
     <!-- Contact -->
     <section id="contact" style="text-align: center; margin: 5rem 0;">
       <h2 class="section-title">📬 Conclusion</h2>
+      <blockquote style="font-size: 1.5rem; font-style: italic; color: var(--text-light); margin: 2rem 0;">
+        "Il faut toujours viser la lune, car même en cas d'échec, on atterrit dans les étoiles."
       </blockquote>
       <p style="color: var(--text); margin: 2rem 0; max-width: 650px; margin-left: auto; margin-right: auto; font-size: 1.1rem;">
         Si mon profil vous intéresse, je vous invite à cliquer sur l'un de ces boutons afin de consulter mon CV ou de me contacter par mail.
       </p>
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
         <a class="btn primary" href="#" download="CV_Evan_Beclin.pdf">📄 Télécharger mon CV</a>
-        <a class="btn outline" href="mailto:evan.beclin@gmail.com" style="color: var(--primary); border-color: var(--primary);">✉️ Me contacter</a>
+        <a class="btn outline" href="mailto:evan.beclin@example.com" style="color: var(--primary); border-color: var(--primary);">✉️ Me contacter</a>
       </div>
     </section>
 
@@ -547,6 +646,27 @@
   <button class="back-to-top" aria-label="Retour en haut">↑</button>
 
   <script>
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    // Charger la préférence sauvegardée
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      // Sauvegarder la préférence
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+    
     // Back to top
     const backBtn = document.querySelector('.back-to-top');
     backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
