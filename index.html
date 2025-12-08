@@ -5,176 +5,565 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio — Evan Béclin</title>
   <meta name="description" content="Portfolio de Evan Béclin — parcours, compétences et aspirations." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --bg: #f8f9fd;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+      --shadow-hover: 0 8px 30px rgba(99, 102, 241, 0.15);
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .brand strong {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(99, 102, 241, 0.08);
+    }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .hero .lead {
+      font-size: 1.25rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+    
+    .btn.primary {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    
+    .btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    
+    .btn.outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    
+    .btn.outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: white;
+    }
+    
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      margin: 4rem 0 3rem;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), #8b5cf6);
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+    
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    
+    .about-card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+    }
+    
+    .about-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .about-card h3 {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    
+    .about-card p {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    
+    /* Parcours Section */
+    .parcours-section {
+      background: var(--card);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin: 3rem 0;
+    }
+    
+    .parcours-subsection {
+      margin-bottom: 3rem;
+    }
+    
+    .parcours-subsection:last-child {
+      margin-bottom: 0;
+    }
+    
+    .parcours-subsection h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .diplome-box {
+      background: rgba(99, 102, 241, 0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .diplome-box p {
+      color: var(--text);
+      line-height: 1.7;
+    }
+    
+    .experience-item {
+      background: rgba(99, 102, 241, 0.03);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--primary);
+      transition: all 0.3s;
+    }
+    
+    .experience-item:hover {
+      background: rgba(99, 102, 241, 0.08);
+      transform: translateX(4px);
+    }
+    
+    .experience-item h4 {
+      color: var(--text);
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    
+    .experience-date {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    
+    .experience-item p {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    
+    .benevole-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+      padding: 2rem;
+      border-radius: 12px;
+      border: 2px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .benevole-box p {
+      color: var(--text);
+      line-height: 1.8;
+    }
+    
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    
+    .skill-item {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .skill-item strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    
+    .skill-item span {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    /* Footer */
+    .site-footer {
+      background: var(--text);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 6rem;
+    }
+    
+    .site-footer small {
+      opacity: 0.8;
+    }
+    
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      right: 2rem;
+      bottom: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      color: white;
+      border: none;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+      cursor: pointer;
+      font-size: 1.5rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero .lead { font-size: 1.1rem; }
+      .section-title { font-size: 2rem; }
+      .nav { padding: 1rem; }
+      .nav-links { gap: 0.25rem; }
+      .nav-links a { padding: 0.5rem 0.75rem; font-size: 0.85rem; }
+      .container { padding: 0 1rem; }
+      .parcours-section { padding: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-  <header class="site-header" role="banner">
-    <nav class="nav" role="navigation" aria-label="Navigation principale">
+  <header class="site-header">
+    <nav class="nav">
       <div class="brand">
-        <div class="avatar" aria-hidden="true">EB</div>
-        <strong>Evan Béclin </strong>
+        <div class="avatar">EB</div>
+        <strong>Evan Béclin</strong>
       </div>
       <div class="nav-links">
-        <a href="#qui-suis-je">Qui suis-je</a>
+        <a href="#about">À propos</a>
         <a href="#parcours">Parcours</a>
         <a href="#competences">Compétences</a>
-        <a href="#reussites">Réussites</a>
-        <a href="#aspirations">Aspirations</a>
-        <a href="#conclure">Conclusion</a>
+        <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
 
-  <main>
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="container">
-        <h1 id="hero-title">Portfolio Evan Béclin</h1>
-        <p class="lead">Découvre mon parcours, mes compétences et mes projets — un profil orienté commercial BTOB, BTOC.</p>
-        <div class="hero-ctas">
-          <a class="btn primary" href="#qui-suis-je">En savoir plus</a>
-          <a class="btn outline" href="#conclure">Contact / CV</a>
+  <section class="hero">
+    <h1>Portfolio Evan Béclin</h1>
+    <p class="lead">Étudiant en Commerce Sportif · Alternance Loewi · Passionné de football et de voyages</p>
+    <div class="hero-ctas">
+      <a class="btn primary" href="#about">Découvrir mon profil</a>
+      <a class="btn outline" href="#contact">Me contacter</a>
+    </div>
+  </section>
+
+  <main class="container">
+    
+    <!-- À propos -->
+    <section id="about">
+      <h2 class="section-title">Qui suis-je ? 👋</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>🎯 Mon profil</h3>
+          <p>Étudiant dans le domaine du commerce spécialisé dans le sport. Forte appétence pour la vente et le commerce BtoB/BtoC. Passionné de football et de voyages à travers le monde.</p>
+        </div>
+        <div class="about-card">
+          <h3>💪 Mes qualités</h3>
+          <p><strong>Ambitieux</strong> · <strong>Déterminé</strong> · <strong>Curieux</strong><br>Esprit d'équipe, capacité d'adaptation et apprentissage rapide.</p>
+        </div>
+        <div class="about-card">
+          <h3>⚽ Ma passion</h3>
+          <p>Je voyage partout dans le monde pour assister à des matchs de football et y découvrir les locaux. Cette passion me permet de m'ouvrir à de nombreuses cultures tout en vivant des expériences uniques.</p>
         </div>
       </div>
     </section>
 
-    <section class="container content">
-      <!-- 1. Qui suis-je -->
-      <article class="card" id="qui-suis-je" tabindex="-1" aria-labelledby="qs-title">
-        <h2 id="qs-title">1. Qui suis-je ? (Identité &amp; personnalité)</h2>
-
-        <h3>• Comment te présenterais-tu en quelques phrases à quelqu'un qui ne te connaît pas ?</h3>
-        <p>Je m'appelle Evan Béclin, je suis étudiant dans le domaine du commerce spécialisé dans le sport. J'aime beaucoup le sport, surtout le football. J'ai une forte appétence pour le commerce et particulièrement la vente. J'aime beaucoup voyager et découvrir de nouvelles choses.</p>
-
-        <h3>• Trois mots (ou qualités) pour ta personnalité dans un contexte professionnel ?</h3>
-        <p><strong>Ambitieux, Déterminé, Curieux.</strong></p>
-
-        <h3>• Tes valeurs principales ?</h3>
-        <p>Détermination, Curiosité, Esprit d'équipe.</p>
-
-        <h3>• Anecdote</h3>
-        <p>Je voyage partout en Europe pour voir des matchs de football. Cela me permets de m'ouvrir à de nombreuses cultures tout en profitant de ma passion.</p>
-      </article>
-
-      <!-- 2. Parcours -->
-      <article class="card" id="parcours" tabindex="-1" aria-labelledby="parcours-title">
-        <h2 id="parcours-title">2. Parcours (académique &amp; extrascolaire)</h2>
-
-        <h3>• Diplômes</h3>
-        <p>Baccalauréat général (spécialités HGGSP, SES), puis licence en <em>Commercialisation des Produits et Services Sportifs</em> à l'ILEPS.</p>
-
-        <h3>• Matière / Projet marquant</h3>
-        <p>Les cours d'histoire et d'économie : ils m'ont aidé à comprendre les enjeux sociaux et économiques qui structurent les organisations.</p>
-
-        <h3>• Projets associatifs &amp; bénévolat</h3>
-        <p>Aux JO 2024 de Paris, j'étais bénévole au CDFAS (Athletica), centre d'entrainement de la délégation américaine pour les JO de Paris. J'ai participé à la construction des installations, à la préparation des équipements et au ravitaillement — une expérience logistique et humaine forte, dans un contexte international. Lorsque je travaillais au Paris FC j'ai organisé des tournois de football féminin dans le but de développé la visibilité de ce sport au sein de l'Ile de France.</p>
-
-        <h3>• Expériences professionnelles</h3>
-        <p>J'ai effectué un premier stage de découverte chez TF1 au sein du service Sportif et du service divertissement. J'ai poursuivi avec un stage en vente chez Decathlon au sein du magasin de Créteil. J'ai ensuite effectué un stage au Paris FC où j'étais Assistant BtoB. Enfin, je suis actuellement alternant au sein du pôle BtoC d'une start up nommée Loewi. Toutes ces expériences m'ont surtout confortées dans mon souhait de poursuivre au sein des services commerciaux des entreprises. J'ai notamment développé mes techniques de vente et de négociation ce qui me sera très utile à l'avenir.</p>
-      </article>
-
-      <!-- 3. Compétences -->
-      <article class="card" id="competences" tabindex="-1" aria-labelledby="comp-title">
-        <h2 id="comp-title">3. Compétences</h2>
-
-        <h3>• Compétences techniques</h3>
-        <p>Lors de mes études, j'ai pu développer des compétences en négociation, techniques de vente et surtout en gestion de projet et travail en équipe ce qui est valorisant en entreprise.</p>
-
-        <h3>• Soft skills</h3>
-        <p>Je pense comprendre les choses assez rapidement, je sais bien travaillé en équipe, je suis déterminé et j'ai déjà formé des nouveaux arrivants.</p>
-
-        <h3>• Outils</h3>
-        <p>Salesforce, Excel, Word, Canva et les principaux réseaux sociaux.</p>
-
-        <h3>• À mettre en avant</h3>
-        <p>J'aimerai mettre en avant ma détermination et capacité d'adaptation.</p>
-      </article>
-
-      <!-- 4. Réussites -->
-      <article class="card" id="reussites" tabindex="-1" aria-labelledby="reuss-title">
-        <h2 id="reuss-title">4. Réussites et fiertés</h2>
-
-        <h3>• Réalisations</h3>
-        <p>L'obtention de mon bac avec mention et mon passage au Paris FC.</p>
-      </article>
-
-      <!-- 5. Aspirations -->
-      <article class="card" id="aspirations" tabindex="-1" aria-labelledby="aspir-title">
-        <h2 id="aspir-title">5. Aspirations</h2>
-
-        <h3>• Poste visé</h3>
-        <p>J'aimerai occuper une fonction commerciale au sein d'une entreprise sportive &amp; donnée.</p>
-
-        <h3>• Univers professionnel</h3>
-        <p>Le secteur du sport car c'est ma passion première.</p>
-
-        <h3>• Compétences à développer</h3>
-        <p>J'aimerai développer mes compétences en BtoB et en informatique avec l'arrivée des intelligences artificielles.</p>
-
-        <h3>• Job de rêve</h3>
-        <p>Directeur commercial d'un club professionnel de football.</p>
-      </article>
-
-      <!-- 7. Conclure -->
-      <article class="card" id="conclure" tabindex="-1" aria-labelledby="concl-title">
-        <h2 id="concl-title">7. Conclusion</h2>
-
-        <h3>• Citation </h3>
-        <p>Il faut toujours viser la lune, car même en cas d'échec, on atterrit dans les étoiles.</p>
-
-        <h3>• Premier sujet d'échange souhaité</h3>
-        <p>Je souhaite d'abord échanger sur mes expériences en gestion de projet et mon alternance, ainsi que sur mes aspirations professionnelles.</p>
-
-        <div class="card-actions">
-          <a class="btn primary" href="#" download="CV.Evan Beclin.pdf">Télécharger mon CV (PDF)</a>
-          <a class="btn outline" href="mailto:ton.email@example.com">Me contacter</a>
+    <!-- Parcours -->
+    <section id="parcours">
+      <h2 class="section-title">🎓 Parcours</h2>
+      <div class="parcours-section">
+        
+        <!-- Diplômes -->
+        <div class="parcours-subsection">
+          <h3>🎓 Diplômes</h3>
+          <div class="diplome-box">
+            <p>Baccalauréat général (spécialités HGGSP, SES), désormais en licence en <strong>Commercialisation des Produits et Services Sportifs</strong> à l'ILEPS.</p>
+          </div>
         </div>
-      </article>
 
+        <!-- Expériences professionnelles -->
+        <div class="parcours-subsection">
+          <h3>💼 Expériences professionnelles</h3>
+          
+          <div class="experience-item">
+            <h4>Commercial BtoB / BtoC chez Loewi</h4>
+            <span class="experience-date">Novembre 2024 - Juillet 2026</span>
+            <p>Alternance au sein d'une start-up parisienne spécialisée dans le domaine du vélo électrique reconditionné.</p>
+          </div>
+
+          <div class="experience-item">
+            <h4>Assistant BtoB / Partenariats au Paris FC</h4>
+            <span class="experience-date">Avril 2024 - Juin 2024</span>
+            <p>Stage au sein du club professionnel de football, gestion des partenariats et relations BtoB.</p>
+          </div>
+
+          <div class="experience-item">
+            <h4>Stage en vente chez Decathlon</h4>
+            <span class="experience-date">Décembre 2023 - Février 2024</span>
+            <p>Stage au rayon Cycles GSA, développement des compétences en vente et conseil client.</p>
+          </div>
+
+          <div class="experience-item">
+            <h4>Stage chez TF1</h4>
+            <span class="experience-date">Décembre 2019</span>
+            <p>Découverte du pôle divertissement et publicitaire.</p>
+          </div>
+        </div>
+
+        <!-- Projets associatifs & bénévolat -->
+        <div class="parcours-subsection">
+          <h3>🤝 Projets associatifs & bénévolat</h3>
+          <div class="benevole-box">
+            <p>Aux JO 2024 de Paris, j'étais bénévole au CDFAS (Athletica), centre d'entraînement de la délégation américaine pour les JO de Paris. J'ai participé à la construction des installations, à la préparation des équipements et au ravitaillement — une expérience logistique et humaine forte, dans un contexte international.</p>
+            <p style="margin-top: 1rem;">Lorsque je travaillais au Paris FC, j'ai organisé des tournois de football féminin dans le but de développer la visibilité de ce sport au sein de l'Île-de-France.</p>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <footer class="site-footer">
-      <div class="container">
-        <small>&copy; 2025 — Evan Béclin — Tous droits réservés</small>
+    <!-- Compétences -->
+    <section id="competences">
+      <h2 class="section-title">💼 Compétences</h2>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <strong>📊 Gestion de projet</strong>
+          <span>Gestion de projet et coordination d'équipes</span>
+        </div>
+        <div class="skill-item">
+          <strong>🤝 Vente</strong>
+          <span>Négociation, BtoB, BtoC</span>
+        </div>
+        <div class="skill-item">
+          <strong>💻 Outils</strong>
+          <span>PipeDrive, suite Office, Canva</span>
+        </div>
+        <div class="skill-item">
+          <strong>🌐 Réseaux sociaux</strong>
+          <span>Communication digitale</span>
+        </div>
+        <div class="skill-item">
+          <strong>🎯 Adaptation rapide</strong>
+          <span>Force de proposition</span>
+        </div>
+        <div class="skill-item">
+          <strong>👥 Esprit d'équipe</strong>
+          <span>Formation et accompagnement</span>
+        </div>
       </div>
-    </footer>
+    </section>
 
-    <button class="back-to-top" aria-label="Retour en haut" title="Retour en haut">↑</button>
+    <!-- Contact -->
+    <section id="contact" style="text-align: center; margin: 5rem 0;">
+      <h2 class="section-title">📬 Conclusion</h2>
+      </blockquote>
+      <p style="color: var(--text); margin: 2rem 0; max-width: 650px; margin-left: auto; margin-right: auto; font-size: 1.1rem;">
+        Si mon profil vous intéresse, je vous invite à cliquer sur l'un de ces boutons afin de consulter mon CV ou de me contacter par mail.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <a class="btn primary" href="#" download="CV_Evan_Beclin.pdf">📄 Télécharger mon CV</a>
+        <a class="btn outline" href="mailto:evan.beclin@gmail.com" style="color: var(--primary); border-color: var(--primary);">✉️ Me contacter</a>
+      </div>
+    </section>
 
   </main>
 
+  <footer class="site-footer">
+    <small>&copy; 2025 — Evan Béclin — Tous droits réservés</small>
+  </footer>
+
+  <button class="back-to-top" aria-label="Retour en haut">↑</button>
+
   <script>
-    // apparition progressive + highlight nav
-    const cards = document.querySelectorAll('.card');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
-      });
-    }, { threshold: 0.12 });
-    cards.forEach(c => observer.observe(c));
-
-    // nav active link
-    const sections = document.querySelectorAll('article.card');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
-        }
-      });
-    }, { threshold: 0.35 });
-    sections.forEach(s => navObserver.observe(s));
-
-    // back to top
+    // Back to top
     const backBtn = document.querySelector('.back-to-top');
     backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     window.addEventListener('scroll', () => {
       backBtn.style.display = (window.scrollY > 300) ? 'flex' : 'none';
     });
-    // init state
-    backBtn.style.display = 'none';
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
   </script>
 </body>
 </html>
