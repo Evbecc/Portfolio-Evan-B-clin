@@ -27,10 +27,10 @@ body{
 .brand{display:flex;align-items:center;gap:.75rem}
 .brand strong{font-weight:700;color:var(--title)}
 .avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;  /* ou 50% pour un cercle parfait */
-  object-fit: cover;     /* pour bien cadrer la photo */
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
