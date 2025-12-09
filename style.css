@@ -121,8 +121,10 @@ body.dark-mode .theme-toggle .moon-icon {
   height: 55px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 30%; /* ajuste la position verticale */
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
   border: 3px solid white;
+  transform: scale(0.85); /* dézoome légèrement */
 }
 
 .brand strong {
@@ -218,13 +220,15 @@ body.dark-mode .brand strong {
   height: 280px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 30%; /* ajuste la position verticale */
   border: 8px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
+  transform: scale(0.85); /* dézoome pour montrer plus de la photo */
 }
 
 .avatar-large:hover {
-  transform: scale(1.05);
+  transform: scale(0.90); /* légèrement plus grand au survol */
 }
 
 .btn {
