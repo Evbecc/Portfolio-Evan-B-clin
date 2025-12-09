@@ -220,7 +220,7 @@ body.dark-mode .brand strong {
   height: 280px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center 30%; /* ajuste la position verticale */
+  object-position: center 40%; /* ajuste la position verticale */
   border: 8px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
@@ -228,7 +228,7 @@ body.dark-mode .brand strong {
 }
 
 .avatar-large:hover {
-  transform: scale(0.90); /* légèrement plus grand au survol */
+  transform: scale(0.75); /* légèrement plus grand au survol */
 }
 
 .btn {
