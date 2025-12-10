@@ -121,10 +121,8 @@ body.dark-mode .theme-toggle .moon-icon {
   height: 55px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center 30%; /* ajuste la position verticale */
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
   border: 3px solid white;
-  transform: scale(0.85); /* dézoome légèrement */
 }
 
 .brand strong {
@@ -220,15 +218,13 @@ body.dark-mode .brand strong {
   height: 280px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center 40%; /* ajuste la position verticale */
   border: 8px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
-  transform: scale(0.85); /* dézoome pour montrer plus de la photo */
 }
 
 .avatar-large:hover {
-  transform: scale(0.75); /* légèrement plus grand au survol */
+  transform: scale(1.05);
 }
 
 .btn {
@@ -413,6 +409,43 @@ body.dark-mode .brand strong {
   color: var(--text);
   line-height: 1.8;
 }
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.skill-item {
+  background: var(--card);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+  border-left: 4px solid var(--primary);
+}
+
+.skill-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.skill-item strong {
+  display: block;
+  color: var(--primary);
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.skill-item span {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 /* Stats Section */
 .stats-grid {
   display: grid;
@@ -481,41 +514,6 @@ body.dark-mode .brand strong {
 
 body.dark-mode .stat-label {
   color: var(--text-light);
-}
-/* Skills Grid */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin: 3rem 0;
-}
-
-.skill-item {
-  background: var(--card);
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  transition: all 0.3s;
-  border-left: 4px solid var(--primary);
-}
-
-.skill-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-}
-
-.skill-item strong {
-  display: block;
-  color: var(--primary);
-  font-size: 1.15rem;
-  margin-bottom: 0.75rem;
-  font-weight: 700;
-}
-
-.skill-item span {
-  color: var(--text-light);
-  font-size: 0.95rem;
-  line-height: 1.6;
 }
 
 /* Footer */
