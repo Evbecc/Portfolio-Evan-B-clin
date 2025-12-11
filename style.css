@@ -603,3 +603,54 @@ body.dark-mode .stat-label {
     height: 180px;
   }
 }
+/* Expériences cliquables */
+.experience-item.clickable {
+  cursor: pointer;
+  position: relative;
+}
+
+.experience-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  margin-top: 0;
+}
+
+.experience-details.active {
+  max-height: 500px;
+  margin-top: 1rem;
+}
+
+.experience-details ul {
+  margin: 0.75rem 0 0.75rem 1.5rem;
+  color: var(--text-light);
+}
+
+.experience-details li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.experience-details strong {
+  color: var(--primary);
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.toggle-btn:hover {
+  color: var(--primary-dark);
+}
+
+.toggle-btn.active {
+  transform: rotate(180deg);
+}
