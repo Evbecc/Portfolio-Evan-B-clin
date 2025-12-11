@@ -947,7 +947,7 @@
       backBtn.style.display = 'none';
     }
   });
-  <script>
+<script>
   // Dark Mode Toggle
   const themeToggle = document.getElementById('themeToggle');
   const body = document.body;
@@ -979,21 +979,22 @@
     }
   });
 
-  // Expériences cliquables
-  document.querySelectorAll('.experience-item.clickable').forEach(item => {
-    const btn = item.querySelector('.toggle-btn');
-    const details = item.querySelector('.experience-details');
-    
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      details.classList.toggle('active');
-      btn.classList.toggle('active');
-      
-      if (details.classList.contains('active')) {
-        btn.textContent = 'Voir moins ▲';
-      } else {
-        btn.textContent = 'Voir plus ▼';
-      }
-    });
-  });
+  // Fonctions pour les modals
+  function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  // Fermer la modal en cliquant en dehors
+  window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+      event.target.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  }
 </script>
