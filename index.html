@@ -831,4 +831,53 @@
       backBtn.style.display = 'none';
     }
   });
+  <script>
+  // Dark Mode Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+  }
+  
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+  });
+  
+  // Back to top
+  const backBtn = document.querySelector('.back-to-top');
+  backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backBtn.style.display = 'flex';
+    } else {
+      backBtn.style.display = 'none';
+    }
+  });
+
+  // Expériences cliquables
+  document.querySelectorAll('.experience-item.clickable').forEach(item => {
+    const btn = item.querySelector('.toggle-btn');
+    const details = item.querySelector('.experience-details');
+    
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      details.classList.toggle('active');
+      btn.classList.toggle('active');
+      
+      if (details.classList.contains('active')) {
+        btn.textContent = 'Voir moins ▲';
+      } else {
+        btn.textContent = 'Voir plus ▼';
+      }
+    });
+  });
 </script>
