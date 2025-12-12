@@ -957,7 +957,8 @@
     body.classList.add('dark-mode');
   }
   
-  themeToggle.addEventListener('click', () => {
+  themeToggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // Empêche le conflit avec window.onclick
     body.classList.toggle('dark-mode');
     
     if (body.classList.contains('dark-mode')) {
@@ -991,10 +992,10 @@
   }
 
   // Fermer la modal en cliquant en dehors
-  window.onclick = function(event) {
+  window.addEventListener('click', function(event) {
     if (event.target.classList.contains('modal')) {
       event.target.style.display = 'none';
       document.body.style.overflow = 'auto';
     }
-  }
+  });
 </script>
