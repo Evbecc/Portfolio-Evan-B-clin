@@ -38,7 +38,6 @@
       transition: background 0.3s ease, color 0.3s ease;
     }
     
-    /* Header */
     .site-header {
       position: sticky;
       top: 0;
@@ -63,7 +62,6 @@
       gap: 1rem;
     }
     
-    /* Dark Mode Toggle */
     .theme-toggle {
       position: fixed;
       top: 100px;
@@ -122,7 +120,6 @@
       gap: 0.75rem;
     }
     
-    /* PHOTO PETITE DANS LE HEADER */
     .avatar-small {
       width: 55px;
       height: 55px;
@@ -171,7 +168,6 @@
       color: #f1f5f9;
     }
     
-    /* Hero avec GRANDE PHOTO */
     .hero {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
@@ -213,7 +209,6 @@
       flex-wrap: wrap;
     }
     
-    /* GRANDE PHOTO DANS LE HERO */
     .hero-photo {
       display: flex;
       justify-content: center;
@@ -268,14 +263,12 @@
       border-color: white;
     }
     
-    /* Container */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
     }
     
-    /* Section Titles */
     .section-title {
       text-align: center;
       margin: 4rem 0 3rem;
@@ -295,7 +288,6 @@
       border-radius: 2px;
     }
     
-    /* About Section */
     .about-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -328,7 +320,6 @@
       line-height: 1.7;
     }
     
-    /* Parcours Section */
     .parcours-section {
       background: var(--card);
       padding: 3rem;
@@ -367,42 +358,92 @@
       color: var(--text);
       line-height: 1.7;
     }
-    
-    .experience-item {
-      background: rgba(99, 102, 241, 0.03);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      border-left: 3px solid var(--primary);
+
+    /* NOUVEAU STYLE POUR LES EXPÉRIENCES - Style carte */
+    .experiences-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .experience-card {
+      background: var(--card);
+      border: 2px solid rgba(99, 102, 241, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
       transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
-    
-    .experience-item:hover {
-      background: rgba(99, 102, 241, 0.08);
-      transform: translateX(4px);
+
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      transition: width 0.3s;
     }
-    
-    .experience-item h4 {
+
+    .experience-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .experience-card:hover::before {
+      width: 100%;
+      opacity: 0.05;
+    }
+
+    .experience-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .experience-card h4 {
       color: var(--text);
       font-size: 1.15rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
       font-weight: 700;
+      line-height: 1.3;
     }
-    
+
     .experience-date {
       display: inline-block;
       background: var(--primary);
       color: white;
-      padding: 0.25rem 0.75rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .experience-card p {
+      color: var(--text-light);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .experience-tag {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 0.75rem;
+      margin-top: 1rem;
     }
-    
-    .experience-item p {
-      color: var(--text-light);
-      line-height: 1.7;
+
+    body.dark-mode .experience-card {
+      border-color: rgba(99, 102, 241, 0.2);
     }
     
     .benevole-box {
@@ -417,7 +458,6 @@
       line-height: 1.8;
     }
     
-    /* Skills Grid */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -453,7 +493,6 @@
       line-height: 1.6;
     }
     
-    /* Stats Section - SECTION AJOUTÉE */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -523,7 +562,6 @@
       color: var(--text-light);
     }
     
-    /* Footer */
     .site-footer {
       background: var(--text);
       color: white;
@@ -536,7 +574,6 @@
       opacity: 0.8;
     }
     
-    /* Back to top */
     .back-to-top {
       position: fixed;
       right: 2rem;
@@ -561,7 +598,6 @@
       box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
     }
     
-    /* Responsive */
     @media (max-width: 968px) {
       .hero-content {
         grid-template-columns: 1fr;
@@ -579,6 +615,10 @@
       .avatar-large {
         width: 220px;
         height: 220px;
+      }
+
+      .experiences-grid {
+        grid-template-columns: 1fr;
       }
     }
     
@@ -614,7 +654,6 @@
 </head>
 <body>
 
-  <!-- Theme Toggle Button -->
   <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
     <div class="theme-icon sun-icon">☀️</div>
     <div class="theme-icon moon-icon">🌙</div>
@@ -654,7 +693,6 @@
 
   <main class="container">
     
-    <!-- À propos -->
     <section id="about">
       <h2 class="section-title">Qui suis-je ? 👋</h2>
       <div class="about-grid">
@@ -673,12 +711,10 @@
       </div>
     </section>
 
-    <!-- Parcours -->
     <section id="parcours">
       <h2 class="section-title">🎓 Parcours</h2>
       <div class="parcours-section">
         
-        <!-- Diplômes -->
         <div class="parcours-subsection">
           <h3>🎓 Diplômes</h3>
           <div class="diplome-box">
@@ -686,151 +722,46 @@
           </div>
         </div>
 
-        <!-- Expériences professionnelles -->
-<div class="parcours-subsection">
-  <h3>💼 Expériences professionnelles</h3>
-  
-  <div class="experience-item" onclick="openModal('modal1')">
-    <span class="experience-date">Commercial BtoC / BtoB chez Loewi</span>
-    <h4>Novembre 2024 - Juillet 2026</h4>
-    <p>Alternance au sein d'une start-up parisienne spécialisée dans le domaine du vélo électrique reconditionné.</p>
-  </div>
+        <div class="parcours-subsection">
+          <h3>💼 Expériences professionnelles</h3>
+          
+          <div class="experiences-grid">
+            
+            <div class="experience-card">
+              <span class="experience-icon">🏢</span>
+              <h4>Commercial BtoC / BtoB chez Loewi</h4>
+              <span class="experience-date">Nov 2024 - Juil 2026</span>
+              <p>Alternance au sein d'une start-up parisienne spécialisée dans le domaine du vélo électrique reconditionné.</p>
+              <span class="experience-tag">Alternance</span>
+            </div>
 
-  <div class="experience-item" onclick="openModal('modal2')">
-    <span class="experience-date">Assistant BtoB / Partenariats au Paris FC</span>
-    <h4>Avril 2024 - Juin 2024</h4>
-    <p>Stage au sein du club professionnel de football, gestion des partenariats et relations BtoB.</p>
-  </div>
+            <div class="experience-card">
+              <span class="experience-icon">⚽</span>
+              <h4>Assistant BtoB / Partenariats au Paris FC</h4>
+              <span class="experience-date">Avr 2024 - Juin 2024</span>
+              <p>Stage au sein du club professionnel de football, gestion des partenariats et relations BtoB.</p>
+              <span class="experience-tag">Stage</span>
+            </div>
 
-  <div class="experience-item" onclick="openModal('modal3')">
-    <span class="experience-date">Stage en vente chez Decathlon</span>
-    <h4>Décembre 2023 - Février 2024</h4>
-    <p>Stage au rayon Cycles GSA, développement des compétences en vente et conseil client.</p>
-  </div>
+            <div class="experience-card">
+              <span class="experience-icon">🚴</span>
+              <h4>Stage en vente chez Decathlon</h4>
+              <span class="experience-date">Déc 2023 - Fév 2024</span>
+              <p>Stage au rayon Cycles GSA, développement des compétences en vente et conseil client.</p>
+              <span class="experience-tag">Stage</span>
+            </div>
 
-  <div class="experience-item" onclick="openModal('modal4')">
-    <span class="experience-date">Stage chez TF1</span>
-    <h4>Décembre 2019</h4>
-    <p>Découverte du pôle divertissement et publicitaire.</p>
-  </div>
-</div>
+            <div class="experience-card">
+              <span class="experience-icon">📺</span>
+              <h4>Stage chez TF1</h4>
+              <span class="experience-date">Déc 2019</span>
+              <p>Découverte du pôle divertissement et publicitaire.</p>
+              <span class="experience-tag">Stage découverte</span>
+            </div>
 
-<!-- MODALS -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
-    <h2>💼 Commercial BtoC / BtoB chez Loewi</h2>
-    <p class="modal-subtitle">Novembre 2024 - Juillet 2026</p>
-    
-    <div class="modal-section">
-      <h3>Poste :</h3>
-      <p>Commercial en alternance au sein d'une start-up parisienne spécialisée dans le vélo électrique reconditionné.</p>
-    </div>
-    
-    <div class="modal-section">
-      <h3>Missions :</h3>
-      <ul>
-        <li>Prospection et développement commercial BtoB et BtoC</li>
-        <li>Gestion de la relation client et suivi personnalisé</li>
-        <li>Négociation et closing de ventes</li>
-        <li>Participation aux événements commerciaux</li>
-        <li>Utilisation de PipeDrive pour le CRM</li>
-      </ul>
-    </div>
-    
-    <div class="modal-section">
-      <h3>Compétences clés :</h3>
-      <p>Négociation, prospection, gestion CRM, relation client, vente consultative</p>
-    </div>
-  </div>
-</div>
+          </div>
+        </div>
 
-<div id="modal2" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('modal2')">&times;</span>
-    <h2>⚽ Assistant BtoB / Partenariats au Paris FC</h2>
-    <p class="modal-subtitle">Avril 2024 - Juin 2024</p>
-    
-    <div class="modal-section">
-      <h3>Poste :</h3>
-      <p>Assistant partenariats au sein du club professionnel de football.</p>
-    </div>
-    
-    <div class="modal-section">
-      <h3>Missions :</h3>
-      <ul>
-        <li>Gestion des partenaires officiels du club</li>
-        <li>Organisation d'événements corporate et VIP</li>
-        <li>Suivi des contrats de partenariat</li>
-        <li>Coordination avec les équipes marketing</li>
-        <li>Organisation de tournois de football féminin</li>
-      </ul>
-    </div>
-    
-    <div class="modal-section">
-      <h3>Compétences clés :</h3>
-      <p>Relation partenaire, événementiel sportif, gestion de projet, communication BtoB</p>
-    </div>
-  </div>
-</div>
-
-<div id="modal3" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('modal3')">&times;</span>
-    <h2>🚴 Stage en vente chez Decathlon</h2>
-    <p class="modal-subtitle">Décembre 2023 - Février 2024</p>
-    
-    <div class="modal-section">
-      <h3>Poste :</h3>
-      <p>Vendeur conseil au rayon Cycles GSA.</p>
-    </div>
-    
-    <div class="modal-section">
-      <h3>Missions :</h3>
-      <ul>
-        <li>Conseil et vente de vélos et accessoires</li>
-        <li>Merchandising et mise en rayon</li>
-        <li>Service après-vente et suivi client</li>
-        <li>Gestion des stocks</li>
-        <li>Formation aux produits techniques</li>
-      </ul>
-    </div>
-    
-    <div class="modal-section">
-      <h3>Compétences clés :</h3>
-      <p>Techniques de vente, conseil client, merchandising, connaissance produit</p>
-    </div>
-  </div>
-</div>
-
-<div id="modal4" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('modal4')">&times;</span>
-    <h2>📺 Stage chez TF1</h2>
-    <p class="modal-subtitle">Décembre 2019</p>
-    
-    <div class="modal-section">
-      <h3>Poste :</h3>
-      <p>Stage de découverte du pôle divertissement et publicitaire.</p>
-    </div>
-    
-    <div class="modal-section">
-      <h3>Missions :</h3>
-      <ul>
-        <li>Immersion dans les coulisses de TF1</li>
-        <li>Observation du processus de création publicitaire</li>
-        <li>Participation aux réunions de production</li>
-        <li>Découverte des métiers de l'audiovisuel</li>
-      </ul>
-    </div>
-    
-    <div class="modal-section">
-      <h3>Découverte :</h3>
-      <p>Premier contact avec le monde professionnel et les métiers de la communication</p>
-    </div>
-  </div>
-</div>
-        <!-- Projets associatifs & bénévolat -->
         <div class="parcours-subsection">
           <h3>🤝 Projets associatifs & bénévolat</h3>
           <div class="benevole-box">
@@ -842,7 +773,6 @@
       </div>
     </section>
 
-    <!-- Compétences -->
     <section id="competences">
       <h2 class="section-title">💼 Compétences</h2>
       <div class="skills-grid">
@@ -873,7 +803,6 @@
       </div>
     </section>
 
-    <!-- Statistiques -->
     <section id="statistiques">
       <h2 class="section-title">📊 Mes Statistiques</h2>
       <div class="stats-grid">
@@ -885,117 +814,22 @@
           <div class="stat-number">50+</div>
           <div class="stat-label">👨🏻‍💻 événements pro</div>
         </div>
-                <div class="stat-card">
+        <div class="stat-card">
           <div class="stat-number">20</div>
           <div class="stat-label">🌍 pays visités</div>
         </div>
-           <div class="stat-card">
+        <div class="stat-card">
           <div class="stat-number">20</div>
           <div class="stat-label">🎂 ans</div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact" style="text-align: center; margin: 5rem 0;">
       <h2 class="section-title">📬 Conclusion</h2>
       <p style="color: var(--text); margin: 2rem 0; max-width: 650px; margin-left: auto; margin-right: auto; font-size: 1.1rem;">
         Si mon profil vous intéresse, je vous invite à cliquer sur l'un de ces boutons afin de consulter mon CV ou me contacter par mail.
       </p>
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-        <a class="btn primary" href="CV_Evan_Beclin.pdf" download="CV_Evan_Beclin.pdf"style="color: var(--primary); border-color: var(--primary);">📄 Télécharger mon CV</a>
-        <a class="btn outline" href="mailto:evan.beclin@gmail.com" style="color: var(--primary); border-color: var(--primary);">✉️ Me contacter</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <small>&copy; 2025 — Evan Béclin — Tous droits réservés</small>
-  </footer>
-
-  <button class="back-to-top" aria-label="Retour en haut">↑</button>
-
-<script>
-  // Dark Mode Toggle
-  const themeToggle = document.getElementById('themeToggle');
-  const body = document.body;
-  
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    body.classList.add('dark-mode');
-  }
-  
-  themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    
-    if (body.classList.contains('dark-mode')) {
-      localStorage.setItem('theme', 'dark');
-    } else {
-      localStorage.setItem('theme', 'light');
-    }
-  });
-  
-  // Back to top
-  const backBtn = document.querySelector('.back-to-top');
-  backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backBtn.style.display = 'flex';
-    } else {
-      backBtn.style.display = 'none';
-    }
-  });
-<script>
-  // Dark Mode Toggle
-  const themeToggle = document.getElementById('themeToggle');
-  const body = document.body;
-  
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    body.classList.add('dark-mode');
-  }
-  
-  themeToggle.addEventListener('click', (e) => {
-    e.stopPropagation(); // Empêche le conflit avec window.onclick
-    body.classList.toggle('dark-mode');
-    
-    if (body.classList.contains('dark-mode')) {
-      localStorage.setItem('theme', 'dark');
-    } else {
-      localStorage.setItem('theme', 'light');
-    }
-  });
-  
-  // Back to top
-  const backBtn = document.querySelector('.back-to-top');
-  backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backBtn.style.display = 'flex';
-    } else {
-      backBtn.style.display = 'none';
-    }
-  });
-
-  // Fonctions pour les modals
-  function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-
-  // Fermer la modal en cliquant en dehors
-  window.addEventListener('click', function(event) {
-    if (event.target.classList.contains('modal')) {
-      event.target.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-  });
-</script>
+        <a class="btn primary" href="CV_Evan_Beclin.pdf" download="CV_Evan_Beclin.pdf" style="color: var(--primary); border-color: var(--primary);">📄 Télécharger mon CV</a>
+        <a class="btn outline" href="mailto:evan.beclin@
