@@ -17,7 +17,26 @@
       --shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
       --shadow-hover: 0 8px 30px rgba(99, 102, 241, 0.15);
     }
+    <script>
+  const themeToggle = document.getElementById('themeToggle');
+  
+  // Vérifie si un thème était déjà sauvegardé
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+  
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
     
+    // Sauvegarde la préférence
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+  });
+</script>
+
     body.dark-mode {
       --bg: #0f172a;
       --card: #1e293b;
