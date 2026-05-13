@@ -115,7 +115,6 @@ body.dark-mode .theme-toggle .moon-icon {
   gap: 0.75rem;
 }
 
-/* PHOTO PETITE DANS LE HEADER */
 .avatar-small {
   width: 55px;
   height: 55px;
@@ -164,7 +163,7 @@ body.dark-mode .brand strong {
   color: #f1f5f9;
 }
 
-/* Hero avec GRANDE PHOTO */
+/* Hero */
 .hero {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -206,7 +205,6 @@ body.dark-mode .brand strong {
   flex-wrap: wrap;
 }
 
-/* GRANDE PHOTO DANS LE HERO */
 .hero-photo {
   display: flex;
   justify-content: center;
@@ -288,7 +286,7 @@ body.dark-mode .brand strong {
   border-radius: 2px;
 }
 
-/* About Section */
+/* About */
 .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -321,7 +319,7 @@ body.dark-mode .brand strong {
   line-height: 1.7;
 }
 
-/* Parcours Section */
+/* Parcours */
 .parcours-section {
   background: var(--card);
   padding: 3rem;
@@ -361,7 +359,7 @@ body.dark-mode .brand strong {
   line-height: 1.7;
 }
 
-/* NOUVEAU STYLE POUR LES EXPÉRIENCES - Style carte comme sur la capture d'écran */
+/* Expériences */
 .experiences-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -460,7 +458,7 @@ body.dark-mode .experience-card {
   line-height: 1.8;
 }
 
-/* Skills Grid */
+/* Skills */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -496,7 +494,7 @@ body.dark-mode .experience-card {
   line-height: 1.6;
 }
 
-/* Stats Section */
+/* Stats */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
