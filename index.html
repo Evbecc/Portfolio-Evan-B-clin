@@ -8,37 +8,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
-  <!-- TYPING EFFECT : style du curseur -->
- <style>
-  .typing-text {
-  font-size: 1.15rem;
-  color: #ffffff;        /* ← blanc fixe */
-  font-weight: 500;
-  min-height: 1.8em;
-  display: block;
-  margin: 1rem 0 1.5rem;
-}
-
-  .typing-cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1.1em;
-    background: var(--primary);
-    margin-left: 3px;
-    vertical-align: middle;
-    animation: blink 0.7s step-end infinite;
-  }
-
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
-
-  /* Mode sombre : on force le blanc */
-  .dark-mode .typing-text {
-    color: #f1f5f9;
-  }
-</style>
-
+  <style>
+    .typing-text {
+      font-size: 1.15rem;
+      color: #ffffff;
+      font-weight: 500;
+      min-height: 1.8em;
+      display: block;
+      margin: 1rem 0 1.5rem;
+    }
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--primary);
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: blink 0.7s step-end infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
 </head>
 <body>
 
@@ -75,7 +66,6 @@
       <div class="hero-text">
         <h1>Portfolio Evan Béclin</h1>
 
-        <!-- TYPING EFFECT ICI -->
         <p class="lead">
           <span class="typing-text" id="typingText"></span><span class="typing-cursor"></span>
         </p>
@@ -206,19 +196,20 @@
       <h2 class="section-title">📊 Mes Statistiques</h2>
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number">3+</div>
+          <!-- data-target = valeur finale, data-suffix = ce qui s'affiche après -->
+          <div class="stat-number" data-target="3" data-suffix="+">0</div>
           <div class="stat-label">💰 ans d'expérience</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">50+</div>
+          <div class="stat-number" data-target="50" data-suffix="+">0</div>
           <div class="stat-label">👨🏻‍💻 événements pros</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">1000+</div>
+          <div class="stat-number" data-target="1000" data-suffix="+">0</div>
           <div class="stat-label">✍️ Deals conclus</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">20</div>
+          <div class="stat-number" data-target="20" data-suffix="">0</div>
           <div class="stat-label">🎂 ans</div>
         </div>
       </div>
@@ -259,19 +250,10 @@
 
     function type() {
       const current = phrases[phraseIndex];
-
-      if (isDeleting) {
-        charIndex--;
-      } else {
-        charIndex++;
-      }
-
+      if (isDeleting) { charIndex--; } else { charIndex++; }
       typingEl.textContent = current.substring(0, charIndex);
-
       let speed = isDeleting ? 40 : 70;
-
       if (!isDeleting && charIndex === current.length) {
-        // Pause en fin de phrase
         speed = 1800;
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
@@ -279,12 +261,44 @@
         phraseIndex = (phraseIndex + 1) % phrases.length;
         speed = 400;
       }
-
       setTimeout(type, speed);
     }
-
     type();
     // ---- FIN TYPING EFFECT ----
+
+    // ---- COMPTEUR ANIMÉ ----
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-target'));
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 2000;
+      const stepTime = 16;
+      const steps = duration / stepTime;
+      const increment = target / steps;
+      let current = 0;
+
+      const timer = setInterval(function () {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        el.textContent = Math.floor(current) + suffix;
+      }, stepTime);
+    }
+
+    const counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-number').forEach(function (el) {
+      counterObserver.observe(el);
+    });
+    // ---- FIN COMPTEUR ANIMÉ ----
 
     // Thème
     if (localStorage.getItem('theme') === 'dark') {
@@ -312,7 +326,6 @@
       navToggle.classList.toggle('active');
     });
 
-    // Fermer le menu au clic sur un lien
     document.querySelectorAll('.nav-link').forEach(function (link) {
       link.addEventListener('click', function () {
         navLinks.classList.remove('open');
