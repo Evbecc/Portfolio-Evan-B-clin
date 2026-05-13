@@ -29,6 +29,22 @@
     @keyframes blink {
       50% { opacity: 0; }
     }
+
+    /* ---- FADE-IN AU SCROLL ---- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Délais en cascade pour les grilles */
+    .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .fade-in:nth-child(4) { transition-delay: 0.3s; }
+    /* ---- FIN FADE-IN ---- */
   </style>
 </head>
 <body>
@@ -84,17 +100,17 @@
   <main class="container">
 
     <section id="about">
-      <h2 class="section-title">Qui suis-je ? 👋</h2>
+      <h2 class="section-title fade-in">Qui suis-je ? 👋</h2>
       <div class="about-grid">
-        <div class="about-card">
+        <div class="about-card fade-in">
           <h3>🎯 Mon profil</h3>
           <p>Étudiant dans le domaine du commerce. Forte appétence pour la vente et le commerce BtoB/BtoC. Passionné de football et de voyages.</p>
         </div>
-        <div class="about-card">
+        <div class="about-card fade-in">
           <h3>💪 Mes qualités</h3>
           <p><strong>Ambitieux</strong> · <strong>Déterminé</strong> · <strong>Curieux</strong><br>Esprit d'équipe, capacité d'adaptation et apprentissage rapide.</p>
         </div>
-        <div class="about-card">
+        <div class="about-card fade-in">
           <h3>⚽ Ma passion</h3>
           <p>Je voyage partout dans le monde pour assister à des matchs de football et y découvrir les locaux. Cette passion me permet de m'ouvrir à de nombreuses cultures tout en vivant des expériences uniques.</p>
         </div>
@@ -102,21 +118,21 @@
     </section>
 
     <section id="parcours">
-      <h2 class="section-title">🎓 Parcours</h2>
+      <h2 class="section-title fade-in">🎓 Parcours</h2>
       <div class="parcours-section">
 
-        <div class="parcours-subsection">
+        <div class="parcours-subsection fade-in">
           <h3>🎓 Diplômes</h3>
           <div class="diplome-box">
             <p>Baccalauréat général (spécialités HGGSP, SES) et titulaire d'une licence en <strong>Commercialisation des Produits et Services Sportifs</strong> à l'ILEPS, j'intègre dès l'année prochaine le <strong>Programme Grande École (M1)</strong> au sein d'Excelia.</p>
           </div>
         </div>
 
-        <div class="parcours-subsection">
+        <div class="parcours-subsection fade-in">
           <h3>💼 Expériences professionnelles</h3>
           <div class="experiences-grid">
 
-            <div class="experience-card">
+            <div class="experience-card fade-in">
               <span class="experience-icon">🏢</span>
               <h4>Business Developer BtoC / BtoB chez Loewi</h4>
               <span class="experience-date">Nov 2024 - Juil 2026</span>
@@ -124,7 +140,7 @@
               <span class="experience-tag">Alternance</span>
             </div>
 
-            <div class="experience-card">
+            <div class="experience-card fade-in">
               <span class="experience-icon">⚽</span>
               <h4>Assistant BtoB / Partenariats au Paris FC</h4>
               <span class="experience-date">Avr 2024 - Juin 2024</span>
@@ -132,7 +148,7 @@
               <span class="experience-tag">Stage</span>
             </div>
 
-            <div class="experience-card">
+            <div class="experience-card fade-in">
               <span class="experience-icon">🚴</span>
               <h4>Stage en vente chez Decathlon</h4>
               <span class="experience-date">Déc 2023 - Fév 2024</span>
@@ -140,7 +156,7 @@
               <span class="experience-tag">Stage</span>
             </div>
 
-            <div class="experience-card">
+            <div class="experience-card fade-in">
               <span class="experience-icon">📺</span>
               <h4>Stage chez TF1</h4>
               <span class="experience-date">Déc 2019</span>
@@ -151,7 +167,7 @@
           </div>
         </div>
 
-        <div class="parcours-subsection">
+        <div class="parcours-subsection fade-in">
           <h3>🤝 Projets associatifs & bénévolat</h3>
           <div class="benevole-box">
             <p>Aux JO 2024 de Paris, j'étais bénévole au CDFAS (Athletica), centre d'entraînement de la délégation américaine pour les JO de Paris. J'ai participé à la construction des installations, à la préparation des équipements et au ravitaillement — une expérience logistique et humaine forte, dans un contexte international.</p>
@@ -163,29 +179,29 @@
     </section>
 
     <section id="competences">
-      <h2 class="section-title">💼 Compétences</h2>
+      <h2 class="section-title fade-in">💼 Compétences</h2>
       <div class="skills-grid">
-        <div class="skill-item">
+        <div class="skill-item fade-in">
           <strong>📊 Gestion de projet</strong>
           <span>Gestion de projet et coordination d'équipes</span>
         </div>
-        <div class="skill-item">
+        <div class="skill-item fade-in">
           <strong>🤝 Vente</strong>
           <span>Négociation, BtoB, BtoC</span>
         </div>
-        <div class="skill-item">
+        <div class="skill-item fade-in">
           <strong>💻 Outils</strong>
           <span>PipeDrive, suite Office, Canva, Shopify, Notion</span>
         </div>
-        <div class="skill-item">
+        <div class="skill-item fade-in">
           <strong>🌐 Réseaux sociaux</strong>
           <span>Communication digitale</span>
         </div>
-        <div class="skill-item">
+        <div class="skill-item fade-in">
           <strong>🎯 Adaptation rapide</strong>
           <span>Force de proposition</span>
         </div>
-        <div class="skill-item">
+        <div class="skill-item fade-in">
           <strong>👥 Esprit d'équipe</strong>
           <span>Formation et accompagnement</span>
         </div>
@@ -193,29 +209,28 @@
     </section>
 
     <section id="statistiques">
-      <h2 class="section-title">📊 Mes Statistiques</h2>
+      <h2 class="section-title fade-in">📊 Mes Statistiques</h2>
       <div class="stats-grid">
-        <div class="stat-card">
-          <!-- data-target = valeur finale, data-suffix = ce qui s'affiche après -->
+        <div class="stat-card fade-in">
           <div class="stat-number" data-target="3" data-suffix="+">0</div>
           <div class="stat-label">💰 ans d'expérience</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card fade-in">
           <div class="stat-number" data-target="50" data-suffix="+">0</div>
           <div class="stat-label">👨🏻‍💻 événements pros</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card fade-in">
           <div class="stat-number" data-target="1000" data-suffix="+">0</div>
           <div class="stat-label">✍️ Deals conclus</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card fade-in">
           <div class="stat-number" data-target="20" data-suffix="">0</div>
           <div class="stat-label">🎂 ans</div>
         </div>
       </div>
     </section>
 
-    <section id="contact" style="text-align: center; margin: 5rem 0;">
+    <section id="contact" class="fade-in" style="text-align: center; margin: 5rem 0;">
       <h2 class="section-title">📬 Conclusion</h2>
       <p style="color: var(--text); margin: 2rem auto; max-width: 650px; font-size: 1.1rem;">
         Si mon profil vous intéresse, je vous invite à cliquer sur ce bouton afin de consulter mon CV.
@@ -299,6 +314,21 @@
       counterObserver.observe(el);
     });
     // ---- FIN COMPTEUR ANIMÉ ----
+
+    // ---- FADE-IN AU SCROLL ----
+    const fadeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(function (el) {
+      fadeObserver.observe(el);
+    });
+    // ---- FIN FADE-IN AU SCROLL ----
 
     // Thème
     if (localStorage.getItem('theme') === 'dark') {
