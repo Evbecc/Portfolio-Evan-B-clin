@@ -40,14 +40,28 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* Délais en cascade pour les grilles */
     .fade-in:nth-child(2) { transition-delay: 0.1s; }
     .fade-in:nth-child(3) { transition-delay: 0.2s; }
     .fade-in:nth-child(4) { transition-delay: 0.3s; }
-    /* ---- FIN FADE-IN ---- */
+
+    /* ---- BARRE DE PROGRESSION ---- */
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), #a5b4fc);
+      z-index: 9999;
+      transition: width 0.1s linear;
+      border-radius: 0 2px 2px 0;
+    }
   </style>
 </head>
 <body>
+
+  <!-- BARRE DE PROGRESSION -->
+  <div id="reading-progress"></div>
 
   <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
     <div class="theme-icon sun-icon">☀️</div>
@@ -81,11 +95,9 @@
     <div class="hero-content">
       <div class="hero-text">
         <h1>Portfolio Evan Béclin</h1>
-
         <p class="lead">
           <span class="typing-text" id="typingText"></span><span class="typing-cursor"></span>
         </p>
-
         <div class="hero-ctas">
           <a class="btn primary" href="#about">Découvrir mon profil</a>
           <a class="btn outline" href="#contact">Me contacter</a>
@@ -131,7 +143,6 @@
         <div class="parcours-subsection fade-in">
           <h3>💼 Expériences professionnelles</h3>
           <div class="experiences-grid">
-
             <div class="experience-card fade-in">
               <span class="experience-icon">🏢</span>
               <h4>Business Developer BtoC / BtoB chez Loewi</h4>
@@ -139,7 +150,6 @@
               <p>Alternance au sein d'une start-up parisienne spécialisée dans le domaine du vélo électrique reconditionné.</p>
               <span class="experience-tag">Alternance</span>
             </div>
-
             <div class="experience-card fade-in">
               <span class="experience-icon">⚽</span>
               <h4>Assistant BtoB / Partenariats au Paris FC</h4>
@@ -147,7 +157,6 @@
               <p>Stage au sein du club professionnel de football, gestion des partenariats et relations BtoB.</p>
               <span class="experience-tag">Stage</span>
             </div>
-
             <div class="experience-card fade-in">
               <span class="experience-icon">🚴</span>
               <h4>Stage en vente chez Decathlon</h4>
@@ -155,7 +164,6 @@
               <p>Stage au rayon Cycles GSA, développement des compétences en vente et conseil client.</p>
               <span class="experience-tag">Stage</span>
             </div>
-
             <div class="experience-card fade-in">
               <span class="experience-icon">📺</span>
               <h4>Stage chez TF1</h4>
@@ -163,7 +171,6 @@
               <p>Découverte du pôle divertissement et publicitaire.</p>
               <span class="experience-tag">Stage découverte</span>
             </div>
-
           </div>
         </div>
 
@@ -257,7 +264,6 @@
       "Passionné de football et de voyages ⚽🌍",
       "Ambitieux · Déterminé · Curieux 🎯"
     ];
-
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -281,6 +287,16 @@
     type();
     // ---- FIN TYPING EFFECT ----
 
+    // ---- BARRE DE PROGRESSION ----
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', function () {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    });
+    // ---- FIN BARRE DE PROGRESSION ----
+
     // ---- COMPTEUR ANIMÉ ----
     function animateCounter(el) {
       const target = parseInt(el.getAttribute('data-target'));
@@ -290,7 +306,6 @@
       const steps = duration / stepTime;
       const increment = target / steps;
       let current = 0;
-
       const timer = setInterval(function () {
         current += increment;
         if (current >= target) {
