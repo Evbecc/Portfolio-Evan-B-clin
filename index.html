@@ -6,400 +6,7 @@
   <title>Portfolio — Evan Béclin</title>
   <meta name="description" content="Portfolio de Evan Béclin — parcours, compétences et aspirations." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --bg: #f8f9fd;
-      --card: #ffffff;
-      --text: #1e293b;
-      --text-light: #64748b;
-      --shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
-      --shadow-hover: 0 8px 30px rgba(99, 102, 241, 0.15);
-    }
-
-    body.dark-mode {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --text: #f1f5f9;
-      --text-light: #cbd5e1;
-      --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
-    }
-    
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #e2e8f0;
-    }
-    
-    body.dark-mode .site-header {
-      background: rgba(15, 23, 42, 0.95);
-      border-bottom: 1px solid #334155;
-    }
-    
-    .nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    
-    .theme-toggle {
-      position: fixed;
-      top: 100px;
-      right: 2rem;
-      z-index: 999;
-      background: var(--card);
-      border: 2px solid #e2e8f0;
-      border-radius: 20px;
-      padding: 0.5rem;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    body.dark-mode .theme-toggle { border-color: #334155; }
-    .theme-toggle:hover { transform: scale(1.05); box-shadow: var(--shadow-hover); }
-    
-    .theme-icon {
-      width: 28px;
-      height: 28px;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-    }
-    
-    .theme-toggle .sun-icon { display: block; }
-    .theme-toggle .moon-icon { display: none; }
-    body.dark-mode .theme-toggle .sun-icon { display: none; }
-    body.dark-mode .theme-toggle .moon-icon { display: block; }
-    
-    .brand { display: flex; align-items: center; gap: 0.75rem; }
-    
-    .avatar-small {
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-      border: 3px solid white;
-    }
-    
-    .brand strong { font-weight: 700; color: var(--text); font-size: 1.1rem; }
-    .nav-links { display: flex; gap: 0.5rem; }
-    
-    .nav-links a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      transition: all 0.2s;
-      font-size: 0.95rem;
-    }
-    
-    .nav-links a:hover { color: var(--primary); background: rgba(99, 102, 241, 0.08); }
-    body.dark-mode .nav-links a { color: #cbd5e1; }
-    body.dark-mode .nav-links a:hover { color: #a5b4fc; background: rgba(99, 102, 241, 0.2); }
-    body.dark-mode .brand strong { color: #f1f5f9; }
-    
-    .hero {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 5rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    
-    .hero-text { text-align: left; }
-    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    .hero .lead { font-size: 1.25rem; opacity: 0.95; margin-bottom: 2rem; line-height: 1.6; }
-    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .hero-photo { display: flex; justify-content: center; align-items: center; }
-    
-    .avatar-large {
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 8px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-    }
-    
-    .avatar-large:hover { transform: scale(1.05); }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.875rem 1.75rem;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s;
-      font-size: 1rem;
-    }
-    
-    .btn.primary { background: white; color: var(--primary); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
-    .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
-    .btn.outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); }
-    .btn.outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
-    
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    
-    .section-title {
-      text-align: center;
-      margin: 4rem 0 3rem;
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--text);
-      position: relative;
-    }
-    
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), #8b5cf6);
-      margin: 1rem auto 0;
-      border-radius: 2px;
-    }
-    
-    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-    .about-card { background: var(--card); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow); transition: all 0.3s; }
-    .about-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .about-card h3 { color: var(--primary); font-size: 1.1rem; margin-bottom: 0.75rem; font-weight: 700; }
-    .about-card p { color: var(--text-light); line-height: 1.7; }
-    
-    .parcours-section { background: var(--card); padding: 3rem; border-radius: 20px; box-shadow: var(--shadow); margin: 3rem 0; }
-    .parcours-subsection { margin-bottom: 3rem; }
-    .parcours-subsection:last-child { margin-bottom: 0; }
-    
-    .parcours-subsection h3 {
-      color: var(--primary);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .diplome-box {
-      background: rgba(99, 102, 241, 0.05);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border-left: 4px solid var(--primary);
-      margin-bottom: 1.5rem;
-    }
-    
-    .diplome-box p { color: var(--text); line-height: 1.7; }
-    
-    .experiences-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    
-    .experience-card {
-      background: var(--card);
-      border: 2px solid rgba(99, 102, 241, 0.1);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.3s;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .experience-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(135deg, var(--primary), #8b5cf6);
-      transition: width 0.3s;
-    }
-    
-    .experience-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: rgba(99, 102, 241, 0.3); }
-    .experience-card:hover::before { width: 100%; opacity: 0.05; }
-    .experience-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-    .experience-card h4 { color: var(--text); font-size: 1.15rem; margin-bottom: 0.75rem; font-weight: 700; line-height: 1.3; }
-    
-    .experience-date {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 0.3rem 0.8rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    
-    .experience-card p { color: var(--text-light); line-height: 1.6; font-size: 0.95rem; }
-    
-    .experience-tag {
-      display: inline-block;
-      background: rgba(99, 102, 241, 0.1);
-      color: var(--primary);
-      padding: 0.25rem 0.75rem;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-top: 1rem;
-    }
-    
-    body.dark-mode .experience-card { border-color: rgba(99, 102, 241, 0.2); }
-    
-    .benevole-box {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-      padding: 2rem;
-      border-radius: 12px;
-      border: 2px solid rgba(99, 102, 241, 0.2);
-    }
-    
-    .benevole-box p { color: var(--text); line-height: 1.8; }
-    
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-    
-    .skill-item {
-      background: var(--card);
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      transition: all 0.3s;
-      border-left: 4px solid var(--primary);
-    }
-    
-    .skill-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .skill-item strong { display: block; color: var(--primary); font-size: 1.15rem; margin-bottom: 0.75rem; font-weight: 700; }
-    .skill-item span { color: var(--text-light); font-size: 0.95rem; line-height: 1.6; }
-    
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin: 3rem 0; max-width: 1400px; }
-    
-    .stat-card {
-      background: var(--card);
-      padding: 3rem 2rem;
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: all 0.3s;
-      border: 2px solid transparent;
-      position: relative;
-      overflow: hidden;
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--primary), #8b5cf6);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    .stat-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); border-color: rgba(99, 102, 241, 0.2); }
-    .stat-card:hover::before { opacity: 1; }
-    
-    .stat-number {
-      font-size: 4rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary), #8b5cf6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-    
-    .stat-label { font-size: 1.05rem; color: var(--text); font-weight: 600; line-height: 1.5; }
-    body.dark-mode .stat-label { color: var(--text-light); }
-    
-    .site-footer { background: var(--text); color: white; padding: 3rem 2rem; text-align: center; margin-top: 6rem; }
-    .site-footer small { opacity: 0.8; }
-    
-    .back-to-top {
-      position: fixed;
-      right: 2rem;
-      bottom: 2rem;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #8b5cf6);
-      color: white;
-      border: none;
-      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-      cursor: pointer;
-      font-size: 1.5rem;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-    }
-    
-    .back-to-top:hover { transform: translateY(-4px); box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5); }
-    
-    @media (max-width: 968px) {
-      .hero-content { grid-template-columns: 1fr; text-align: center; }
-      .hero-text { text-align: center; }
-      .hero-ctas { justify-content: center; }
-      .avatar-large { width: 220px; height: 220px; }
-      .experiences-grid { grid-template-columns: 1fr; }
-    }
-    
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2rem; }
-      .hero .lead { font-size: 1.1rem; }
-      .section-title { font-size: 2rem; }
-      .nav { padding: 1rem; }
-      .nav-links { gap: 0.25rem; }
-      .nav-links a { padding: 0.5rem 0.75rem; font-size: 0.85rem; }
-      .container { padding: 0 1rem; }
-      .parcours-section { padding: 1.5rem; }
-      .theme-toggle { top: 80px; right: 1rem; padding: 0.4rem; }
-      .theme-icon { width: 24px; height: 24px; font-size: 1.2rem; }
-      .avatar-small { width: 45px; height: 45px; }
-      .avatar-large { width: 180px; height: 180px; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -414,12 +21,20 @@
         <img src="photo-profil.jpg" alt="Evan Béclin" class="avatar-small">
         <strong>Evan Béclin</strong>
       </div>
-      <div class="nav-links">
-        <a href="#about">À propos</a>
-        <a href="#parcours">Parcours</a>
-        <a href="#competences">Compétences</a>
-        <a href="#statistiques">Statistiques</a>
-        <a href="#contact">Contact</a>
+
+      <!-- Bouton hamburger -->
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">À propos</a>
+        <a href="#parcours" class="nav-link">Parcours</a>
+        <a href="#competences" class="nav-link">Compétences</a>
+        <a href="#statistiques" class="nav-link">Statistiques</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </div>
     </nav>
   </header>
@@ -441,7 +56,7 @@
   </section>
 
   <main class="container">
-    
+
     <section id="about">
       <h2 class="section-title">Qui suis-je ? 👋</h2>
       <div class="about-grid">
@@ -463,7 +78,7 @@
     <section id="parcours">
       <h2 class="section-title">🎓 Parcours</h2>
       <div class="parcours-section">
-        
+
         <div class="parcours-subsection">
           <h3>🎓 Diplômes</h3>
           <div class="diplome-box">
@@ -474,7 +89,7 @@
         <div class="parcours-subsection">
           <h3>💼 Expériences professionnelles</h3>
           <div class="experiences-grid">
-            
+
             <div class="experience-card">
               <span class="experience-icon">🏢</span>
               <h4>Business Developer BtoC / BtoB chez Loewi</h4>
@@ -580,7 +195,7 @@
       </p>
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
         <a class="btn primary" href="CV_Evan_Beclin.pdf" download="CV Evan Béclin rentrée 2026.pdf" style="color: var(--primary);">📄 Télécharger mon CV</a>
-        <a class="btn outline" href="mailto:evan.beclin@example.com" style="color: white;">✉️ M'écrire</a>
+        <a class="btn outline" href="mailto:evan.beclin@example.com" style="color: white; background: var(--primary);">✉️ M'écrire</a>
       </div>
     </section>
 
@@ -592,26 +207,39 @@
 
   <button class="back-to-top" id="backToTop" aria-label="Retour en haut">↑</button>
 
-  <!-- ✅ SCRIPT ICI, juste avant </body> -->
   <script>
-    // Applique le thème sauvegardé dès le chargement
+    // Thème
     if (localStorage.getItem('theme') === 'dark') {
       document.body.classList.add('dark-mode');
     }
-
-    // Bouton jour / nuit
     document.getElementById('themeToggle').addEventListener('click', function () {
       document.body.classList.toggle('dark-mode');
       localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     });
 
-    // Bouton retour en haut
+    // Retour en haut
     var backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', function () {
       backToTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
     });
     backToTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Menu hamburger
+    var navToggle = document.getElementById('navToggle');
+    var navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', function () {
+      navLinks.classList.toggle('open');
+      navToggle.classList.toggle('active');
+    });
+
+    // Fermer le menu au clic sur un lien
+    document.querySelectorAll('.nav-link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('active');
+      });
     });
   </script>
 
