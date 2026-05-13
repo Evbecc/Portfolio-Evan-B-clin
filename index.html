@@ -9,27 +9,36 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- TYPING EFFECT : style du curseur -->
-  <style>
-    .typing-text {
-      font-size: 1.15rem;
-      color: var(--text-light);
-      min-height: 1.8em;
-      display: block;
-      margin: 1rem 0 1.5rem;
-    }
-    .typing-cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1.1em;
-      background: var(--primary);
-      margin-left: 3px;
-      vertical-align: middle;
-      animation: blink 0.7s step-end infinite;
-    }
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-  </style>
+ <style>
+  .typing-text {
+    font-size: 1.15rem;
+    color: var(--text);        /* ← était --text-light, trop pâle */
+    font-weight: 500;          /* ← un peu plus de poids */
+    min-height: 1.8em;
+    display: block;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: var(--primary);
+    margin-left: 3px;
+    vertical-align: middle;
+    animation: blink 0.7s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* Mode sombre : on force le blanc */
+  .dark-mode .typing-text {
+    color: #f1f5f9;
+  }
+</style>
+
 </head>
 <body>
 
