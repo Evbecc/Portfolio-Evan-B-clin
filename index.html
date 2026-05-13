@@ -64,7 +64,6 @@
       margin-top: 1.5rem;
     }
 
-    /* Ligne verticale centrale */
     .timeline::before {
       content: '';
       position: absolute;
@@ -91,7 +90,6 @@
       padding-left: calc(50% + 2.5rem);
     }
 
-    /* Point central */
     .timeline-item::after {
       content: '';
       position: absolute;
@@ -130,7 +128,6 @@
       box-shadow: var(--shadow-hover);
     }
 
-    /* Petite flèche pointant vers la ligne */
     .timeline-item:nth-child(odd) .timeline-card::after {
       content: '';
       position: absolute;
@@ -191,36 +188,66 @@
       color: white;
     }
 
-    /* ---- RESPONSIVE TIMELINE ---- */
     @media (max-width: 768px) {
-      .timeline::before {
-        left: 1.2rem;
-      }
-
+      .timeline::before { left: 1.2rem; }
       .timeline-item,
       .timeline-item:nth-child(even) {
         justify-content: flex-start;
         padding-right: 0;
         padding-left: 3.5rem;
       }
-
-      .timeline-item::after {
-        left: 1.2rem;
-      }
-
-      .timeline-item:nth-child(odd) .timeline-card::after {
-        display: none;
-      }
-
+      .timeline-item::after { left: 1.2rem; }
+      .timeline-item:nth-child(odd) .timeline-card::after { display: none; }
       .timeline-item:nth-child(even) .timeline-card::after {
         left: -10px;
         border-right-color: var(--card);
         border-left-color: transparent;
       }
+      .timeline-card { max-width: 100%; }
+    }
 
-      .timeline-card {
-        max-width: 100%;
-      }
+    /* ---- TOOLTIP SUR LES SKILLS ---- */
+    .skill-item {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .skill-item .skill-tooltip {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      color: #fff;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      white-space: nowrap;
+      max-width: 220px;
+      white-space: normal;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 100;
+    }
+
+    /* Petite flèche du tooltip */
+    .skill-item .skill-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: #312e81;
+    }
+
+    .skill-item:hover .skill-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
   </style>
 </head>
@@ -309,7 +336,6 @@
         <div class="parcours-subsection fade-in">
           <h3>💼 Expériences professionnelles</h3>
 
-          <!-- TIMELINE -->
           <div class="timeline">
 
             <div class="timeline-item fade-in">
@@ -353,8 +379,6 @@
             </div>
 
           </div>
-          <!-- FIN TIMELINE -->
-
         </div>
 
         <div class="parcours-subsection fade-in">
@@ -371,30 +395,43 @@
     <section id="competences">
       <h2 class="section-title fade-in">💼 Compétences</h2>
       <div class="skills-grid">
+
         <div class="skill-item fade-in">
+          <div class="skill-tooltip">Planification, suivi de la progression des projets, analyse des résultats et coordination d'équipes</div>
           <strong>📊 Gestion de projet</strong>
           <span>Gestion de projet et coordination d'équipes</span>
         </div>
+
         <div class="skill-item fade-in">
+          <div class="skill-tooltip">Prospection, closing, gestion de pipeline BtoB & BtoC — expérience chez Loewi & Paris FC</div>
           <strong>🤝 Vente</strong>
           <span>Négociation, BtoB, BtoC</span>
         </div>
+
         <div class="skill-item fade-in">
+          <div class="skill-tooltip">PipeDrive · Microsoft Office · Canva · Shopify · Notion</div>
           <strong>💻 Outils</strong>
           <span>PipeDrive, suite Office, Canva, Shopify, Notion</span>
         </div>
+
         <div class="skill-item fade-in">
+          <div class="skill-tooltip">Création de contenu instagram et tiktok - Loewi</div>
           <strong>🌐 Réseaux sociaux</strong>
           <span>Communication digitale</span>
         </div>
+
         <div class="skill-item fade-in">
+          <div class="skill-tooltip">Capacité à monter en compétence rapidement, à proposer des solutions créatives, à travailler efficacement en équipe et forte résilience face aux problèmes.</div>
           <strong>🎯 Adaptation rapide</strong>
           <span>Force de proposition</span>
         </div>
+
         <div class="skill-item fade-in">
+          <div class="skill-tooltip">Travail en équipe, formation et accompagnement des nouveaux collaborateurs</div>
           <strong>👥 Esprit d'équipe</strong>
           <span>Formation et accompagnement</span>
         </div>
+
       </div>
     </section>
 
@@ -423,7 +460,7 @@
     <section id="contact" class="fade-in" style="text-align: center; margin: 5rem 0;">
       <h2 class="section-title">📬 Conclusion</h2>
       <p style="color: var(--text); margin: 2rem auto; max-width: 650px; font-size: 1.1rem;">
-        Si mon profil vous intéresse, je vous invite à cliquer sur ce bouton afin de consulter mon CV.
+        Si mon profil vous intéresse, je vous invite à cliquer sur l'un de ces boutons afin de consulter mon CV ou m'envoyer un mail.
       </p>
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
         <a class="btn primary" href="./CV_Evan_Beclin.pdf" download="CV_Evan_Beclin.pdf" style="color: var(--primary);">📄 Télécharger mon CV</a>
@@ -564,3 +601,4 @@
 
 </body>
 </html>
+
