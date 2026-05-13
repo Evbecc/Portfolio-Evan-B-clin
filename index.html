@@ -7,6 +7,29 @@
   <meta name="description" content="Portfolio de Evan Béclin — parcours, compétences et aspirations." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- TYPING EFFECT : style du curseur -->
+  <style>
+    .typing-text {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      min-height: 1.8em;
+      display: block;
+      margin: 1rem 0 1.5rem;
+    }
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--primary);
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: blink 0.7s step-end infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
 </head>
 <body>
 
@@ -22,7 +45,6 @@
         <strong>Evan Béclin</strong>
       </div>
 
-      <!-- Bouton hamburger -->
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
         <span></span>
         <span></span>
@@ -43,7 +65,12 @@
     <div class="hero-content">
       <div class="hero-text">
         <h1>Portfolio Evan Béclin</h1>
-        <p class="lead">Étudiant en PGE Master 1 Excelia Business School · Alternance Loewi · Passionné de sport</p>
+
+        <!-- TYPING EFFECT ICI -->
+        <p class="lead">
+          <span class="typing-text" id="typingText"></span><span class="typing-cursor"></span>
+        </p>
+
         <div class="hero-ctas">
           <a class="btn primary" href="#about">Découvrir mon profil</a>
           <a class="btn outline" href="#contact">Me contacter</a>
@@ -194,7 +221,7 @@
         Si mon profil vous intéresse, je vous invite à cliquer sur ce bouton afin de consulter mon CV.
       </p>
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-        <a class="btn primary" href="CV_Evan_Beclin.pdf" download="CV_Evan_Beclin.pdf" style="color: var(--primary);">📄 Télécharger mon CV</a>
+        <a class="btn primary" href="./CV_Evan_Beclin.pdf" download="CV_Evan_Beclin.pdf" style="color: var(--primary);">📄 Télécharger mon CV</a>
         <a class="btn outline" href="mailto:evan.beclin@gmail.com" style="color: white; background: var(--primary);">✉️ M'écrire</a>
       </div>
     </section>
@@ -208,6 +235,48 @@
   <button class="back-to-top" id="backToTop" aria-label="Retour en haut">↑</button>
 
   <script>
+    // ---- TYPING EFFECT ----
+    const phrases = [
+      "Étudiant en PGE Master 1 · Excelia Business School",
+      "Business Developer en alternance chez Loewi 🚴",
+      "Passionné de football et de voyages ⚽🌍",
+      "Ambitieux · Déterminé · Curieux 🎯"
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingEl = document.getElementById('typingText');
+
+    function type() {
+      const current = phrases[phraseIndex];
+
+      if (isDeleting) {
+        charIndex--;
+      } else {
+        charIndex++;
+      }
+
+      typingEl.textContent = current.substring(0, charIndex);
+
+      let speed = isDeleting ? 40 : 70;
+
+      if (!isDeleting && charIndex === current.length) {
+        // Pause en fin de phrase
+        speed = 1800;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        speed = 400;
+      }
+
+      setTimeout(type, speed);
+    }
+
+    type();
+    // ---- FIN TYPING EFFECT ----
+
     // Thème
     if (localStorage.getItem('theme') === 'dark') {
       document.body.classList.add('dark-mode');
